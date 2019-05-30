@@ -1,0 +1,61 @@
+.ThoughtReframingForm {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  display: grid;
+  grid-template-columns: 3fr 1fr 3fr;
+
+  .save-btn {
+    display: inline-block;
+    position: absolute;
+    right: 20px;
+    bottom: 20px;
+  }
+
+  .distorted-col, .rational-col {
+    background-color: white;
+  }
+
+  .distorted-blurb, .rational-blurb {
+    padding: 20px;
+    color: #aaa;
+    background-color: #fafafa;
+  }
+
+  .distorted-editor, .rational-editor {
+    background-color: #fff;
+    padding: 20px;
+    min-height: 400px;
+  }
+
+  .cognitive-distortions {
+    background-color: #eee;
+    color: #666;
+
+    .distortion {
+      padding: 10px 10px 10px 10px;
+      &:last-of-type {
+        padding-bottom: 10px;
+      }
+      &:hover {
+        background-color: #ddd;
+        cursor: pointer;
+      }
+      input[type="checkbox"] {
+        margin-right: 10px;
+        padding-bottom: 5px;
+        &:hover {
+          cursor: pointer;
+        }
+      }
+      .description {
+        font-size: 11px;
+        color: #888;
+      }
+      .example {
+        font-size: 10px;
+        color: #666;
+      }
+    }
+  }
+}

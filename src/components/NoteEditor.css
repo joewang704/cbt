@@ -1,0 +1,21 @@
+.Editor {
+  min-height: 300px;
+  min-width: 500px;
+  padding: 20px;
+}
+
+.Editor-wrapper {
+  background-color: #fff;
+  margin: 20px;
+  border: 1px solid #eee;
+}
+
+.Editor-wrapper:hover {
+  cursor: default;
+}
+
+#Editor-toolbar {
+  position: initial;
+  padding: 20px;
+  margin: 0px;
+}

@@ -1,0 +1,57 @@
+[
+  {
+    "name": "All-or-Nothing Thinking",
+    "description": "You evaluate your personal qualities in extreme, black-or-white categories.",
+    "example": "A prominent politician told me, “Because I lost the race for governor, I’m a zero.” A straight-A student who received a B on an exam concluded, “Now I’m a total failure.” All-or-nothing thinking forms the basis for perfectionism. It causes you to fear any mistake or imperfection because you will then see yourself as a complete loser, and you will feel inadequate and worthless.",
+    "relation": "Perfectionism"
+  },
+  {
+    "name": "Overgeneralization",
+    "description": "You arbitrarily conclude that one thing that happened to you once will occur over and over again.",
+    "example": "A depressed salesman noticed bird dung on his car window and thought, “That’s just my luck. The birds are always crapping on my window!” This is a perfect example of overgeneralization. When I asked him about this experience, he admitted that in twenty years of traveling, he could not remember another time when he found bird dung on his car window. “The pain of rejection is generated almost entirely from overgeneralization. In its absence, a personal affront is temporarily disappointing but cannot be seriously disturbing. A shy young man mustered up his courage to ask a girl for a date. When she politely declined because of a previous engagement, he said to himself, “I’m never going to get a date. No girl would ever want a date with me. I’ll be lonely and miserable all my life.” In his distorted cognitions, he concluded that because she turned him down once, she would always do so, and that since all women have 100 percent identical tastes, he would be endlessly and repeatedly rejected by any eligible woman on the face of the earth.",
+    "relation": "Fear of Rejection"
+  },
+  {
+    "name": "Mental Filter",
+    "description": "You pick out a negative detail in any situation and dwell on it exclusively, thus perceiving that the whole situation is negative.",
+    "example": "A depressed college student heard some other students making fun of her best friend. She became furious because she was thinking, “That’s what the human race is basically like—cruel and insensitive!” She was overlooking the fact that in the previous months few people, if any, had been cruel or insensitive to her!",
+    "relation": "Negative Thinking"
+  },
+  {
+    "name": "Disqualifying the Positive",
+    "description": "You transform neutral or even positive experiences into negative ones.",
+    "full-description": "You transform neutral or even positive experiences into negative ones. You don’t just ignore positive experiences, you cleverly and swiftly turn them into their nightmarish opposite.",
+    "example": "An everyday example of this would be the way most of us have been conditioned to respond to compliments. When someone praises your appearance or your work, you might automatically tell yourself, “They’re just being nice.” With one swift blow you mentally disqualify their compliment. You do the same thing to them when you tell them, “Oh, it was nothing, really.” If you constantly throw cold water on the good things that happen, no wonder life seems damp and chilly to you!",
+    "relation": "Negative Thinking"
+  },
+  {
+    "name": "Jumping to Conclusions",
+    "description": "You make a negative interpretation even though there are no definite facts that convincingly support your conclusion."
+  },
+  {
+    "name": "Catastrophizing",
+    "description": "You exaggerate the importance of things (such as your goof-up or someone else’s achievement)."
+  },
+  {
+    "name": "Minimization",
+    "description": "You inappropriately shrink things until they appear tiny (your own desirable qualities or someone else’s imperfections)."
+  },
+  {
+    "name": "Emotional Reasoning",
+    "description": "You assume that your negative emotions necessarily reflect the way things really are: “I feel it, therefore it must be true."
+  },
+  {
+    "name": "Should Statements",
+    "description": "You try to motivate yourself with shoulds and shouldn’ts, as if you had to be punished before you could be expected to do anything.",
+    "full-description": "You try to motivate yourself with shoulds and shouldn’ts, as if you had to be whipped and punished before you could be expected to do anything. “Musts” and “oughts” are also offenders. The emotional consequence is guilt. When you direct should statements toward others, you feel anger, frustration, and resentment."
+  },
+  {
+    "name": "Labeling and Mislabeling",
+    "description": "You attach a negative label to yourself: “I’m a loser.” When someone else’s behavior rubs you the wrong way, you attach a negative label to him.",
+    "full-description": "This is an extreme form of overgeneralization. Instead of describing your error, you attach a negative label to yourself: “I’m a loser.” When someone else’s behavior rubs you the wrong way, you attach a negative label to him: “He’s a goddam louse.” Mislabeling involves describing an event with language that is highly colored and emotionally loaded."
+  },
+  {
+    "name": "Personalization",
+    "description": "You see yourself as the cause of some negative external event which in fact you were not primarily responsible for."
+  }
+]
