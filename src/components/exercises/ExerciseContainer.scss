@@ -6,3 +6,15 @@
     height: 100%;
   }
 }
+
+// Shared styles through all exercise pages
+.exercise-header {
+  .description, .tutorial {
+    padding: 30px;
+    line-height: 20px;
+  }
+
+  .tutorial {
+    padding-top: 0px;
+  }
+}

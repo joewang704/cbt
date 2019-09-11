@@ -1,0 +1,24 @@
+@import "../global";
+
+.sidebar-container {
+  /*background-color: #B39DDB;*/
+  /*background-color: #9c27b0;*/
+  /*background: linear-gradient(rgba(156,39,176,.2),#fff)*/
+  background-color: $navy;
+  color: #fff;
+  h3 {
+    padding-left: 20px;
+  }
+  a {
+    display: block;
+    padding: 10px;
+    padding-left: 20px;
+    text-decoration: none;
+    color: #efefef;
+    font-weight: 150;
+    &:hover {
+      filter: brightness(85%);
+      background-color: $pink;
+    }
+  }
+}

@@ -1,12 +1,24 @@
+@import "../../global";
+
 .ThoughtReframing {
 
   .entry {
     padding: 20px;
     border-bottom: 1px solid #ddd;
 
-    .date {
-      font-size: 22px;   
-      font-weight: bold;
+    .header {
+      display: flex;
+      i {
+        padding-left: 10px;
+        &:hover {
+          cursor: pointer;
+          color: #888;
+        }
+      }
+      .date {
+        font-size: 22px;   
+        font-weight: bold;
+      }
     }
     
     .distortions-container {

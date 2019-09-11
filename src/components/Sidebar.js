@@ -1,11 +1,20 @@
 import React from 'react'
-import './Sidebar.css'
-
 import { connect } from 'react-redux'
+import { Link } from '@reach/router'
+
+import './Sidebar.scss'
+import { exerciseMetadata } from '../utils/exercises'
+
+const links = Object.keys(exerciseMetadata).map(k => {
+  const { name, link } = exerciseMetadata[k]
+  return <Link key={link} to={`/exercise/${link}`} className="link">{name}</Link>
+})
 
 const Sidebar = ({ isOpen }) => {
   return isOpen ? (
-    <div className="container">
+    <div className="sidebar-container">
+      <h3>Exercises</h3>
+      {links}
     </div>
   ) : null
 }

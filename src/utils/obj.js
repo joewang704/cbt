@@ -1,0 +1,1 @@
+export const toArr = (obj={}) => Object.keys(obj).map(k => obj[k])

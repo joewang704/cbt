@@ -10,7 +10,7 @@ import ExerciseContainer from './exercises/ExerciseContainer'
 
 class App extends Component {
   render() {
-    const gridTemplateColumns = this.props.isSidebarOpen ? '1fr 5fr' : '1fr'
+    const gridTemplateColumns = this.props.isSidebarOpen ? '1fr 5.5fr' : '1fr'
     return (
       <div className="App">
         <Header />

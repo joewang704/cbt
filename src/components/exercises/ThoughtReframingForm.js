@@ -8,9 +8,9 @@ import CognitiveDistortions from '../../utils/distortions.json'
 import { Editor } from 'slate-react'
 import { Value } from 'slate'
 import Plain from 'slate-plain-serializer'
-import update from 'immutability-helper'
 import { navigate } from '@reach/router'
 
+// TODO: save form inputs to local storage
 const initialDistortedValue = JSON.parse(localStorage.getItem('test')) || Plain.deserialize('')
 const initialRationalizedValue = JSON.parse(localStorage.getItem('test2')) || Plain.deserialize('')
 
@@ -19,11 +19,12 @@ class ThoughtReframingForm extends React.Component {
   state = {
     distortedThought: Value.fromJSON(initialDistortedValue),
     rationalizedThought: Value.fromJSON(initialRationalizedValue),
+    selectedDistortions: {},
   }
 
   render() {
-    const { selectedDistortions, id, entryNotFound } = this.props
-    const { distortedThought, rationalizedThought } = this.state
+    const { entryNotFound } = this.props
+    const { distortedThought, rationalizedThought, selectedDistortions } = this.state
 
     if (entryNotFound) {
       return <div>No entry was found</div>
@@ -31,7 +32,7 @@ class ThoughtReframingForm extends React.Component {
 
     // If form is filled out, show save button
     const showSaveButton = distortedThought && Plain.serialize(distortedThought)
-      && rationalizedThought && Plain.serialize(rationalizedThought) && selectedDistortions.length
+      && rationalizedThought && Plain.serialize(rationalizedThought) && Object.keys(selectedDistortions).length
     return (
       <div className="ThoughtReframingForm">
         <div className="distorted-col">
@@ -49,7 +50,7 @@ class ThoughtReframingForm extends React.Component {
         <div className="cognitive-distortions">
           {CognitiveDistortions.map(({ name, description, example }) =>
             <div key={name} className="distortion" onClick={(event) => this.toggleCheckbox(name, event)}>
-              <input type="checkbox" name={name} value={name} checked={selectedDistortions.includes(name)} readOnly />
+              <input type="checkbox" name={name} value={name} checked={!!selectedDistortions[name]} readOnly />
               {name}
               <div className="description">{description}</div>
             </div>
@@ -73,7 +74,10 @@ class ThoughtReframingForm extends React.Component {
   }
 
   toggleCheckbox = (name, event) => {
-    this.props.onSelectedDistortionsChange(name)
+    //this.props.onSelectedDistortionsChange(name)
+    const { selectedDistortions } = this.state
+    this.setState({ selectedDistortions: { ...selectedDistortions, [name]: !selectedDistortions[name] } })
+    console.log(this.state)
     event.preventDefault()
   }
 
@@ -86,15 +90,14 @@ class ThoughtReframingForm extends React.Component {
   }
 
   onSubmit = () => {
-    const { saveRationalizedThought, saveDistortedThought, selectedDistortions, id } = this.props
-    let { rationalizedThought, distortedThought } = this.state
+    const { dispatchExercise } = this.props
+    let { rationalizedThought, distortedThought, selectedDistortions } = this.state
     rationalizedThought = Plain.serialize(rationalizedThought)
     distortedThought = Plain.serialize(distortedThought)
-    persistExercise('thoughtReframing', id, { distortedThought, selectedDistortions, rationalizedThought }).then(success => {
-      console.log(success)
-      if (success) {
-        saveRationalizedThought(rationalizedThought)
-        saveDistortedThought(distortedThought)
+    selectedDistortions = Object.keys(selectedDistortions).filter(k => selectedDistortions[k])
+    persistExercise('thoughtReframing', { rationalizedThought, distortedThought, selectedDistortions }).then(thought => {
+      if (thought) {
+        dispatchExercise(thought)
         navigate('./')
       } else {
         // TODO: show error modal
@@ -105,6 +108,13 @@ class ThoughtReframingForm extends React.Component {
 
 export default connect(
   ({ exercises }, { id }) => {
+    if (id === 'new') {
+      return {
+        selectedDistortions: [],
+        distortedThought: Plain.deserialize(''),
+        rationalizedThought: Plain.deserialize(''),
+      }
+    }
     const thoughtData = exercises.thoughtReframing[id]
     if (!thoughtData) {
       return { entryNotFound: true }
@@ -116,26 +126,11 @@ export default connect(
       rationalizedThought: Plain.deserialize(rationalizedThought || ''),
     }
   },
-  (dispatch, { id }) => ({
-    saveDistortedThought: (distortedThought) => {
+  (dispatch) => ({
+    dispatchExercise: (payload) => {
       dispatch(updateExercise(state => {
-        state.thoughtReframing[id].distortedThought = distortedThought
+        state.thoughtReframing[payload._id] = payload
       }))
     },
-    saveRationalizedThought: (rationalizedThought) => {
-      dispatch(updateExercise(state => {
-        state.thoughtReframing[id].rationalizedThought = rationalizedThought
-      }))
-    },
-    onSelectedDistortionsChange: (name) => {
-      dispatch(updateExercise(state => {
-        const indexOf = state.thoughtReframing[id].selectedDistortions.indexOf(name);
-        if (indexOf >= 0) {
-          state.thoughtReframing[id].selectedDistortions.splice(indexOf)
-        } else {
-          state.thoughtReframing[id].selectedDistortions.push(name)
-        }
-      }))
-    }
   })
 )(ThoughtReframingForm)

@@ -1,0 +1,73 @@
+@import "../../global";
+
+.anti-procrastination-container {
+  font-weight: 300;
+  .table {
+    .header, .row {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      div {
+        //border: solid 1px #ddd;
+        padding: 10px;
+        &:first-child {
+          // Balance out padding-left at beginning of table row
+          padding-left: 20px;
+          padding-right: 20px;
+        }
+        &:hover {
+          background-color: #efefef;
+          cursor: pointer;
+        }
+      }
+      input {
+        height: 100%;
+        width: 100%;
+        padding: 0px;
+        margin: -1px;
+        box-sizing: border-box;
+        padding: 10px;
+        border: 0px;
+        border-right: 1px solid #eee;
+        font-size: 14px;
+        font-weight: 300;
+      }
+      border: solid 1px #ddd;
+    }
+    .header {
+      background-color: #eee;
+      font-weight: 500;
+    }
+    .btn-row {
+      display: flex;
+      width: 100%;
+      .btn-row-el {
+        padding: 10px 0;
+        text-align: center;
+        flex-grow: 1;
+        &:hover {
+          opacity: .8;
+          cursor: pointer;
+        }
+      }
+      .add {
+        background-color: #eee;
+      }
+      .submit {
+        background-color: $green;
+        color: #fff;
+      }
+      .cancel {
+        background-color: #ddd;
+      }
+    }
+  }
+  // TODO: remove
+  .add-btn-table {
+    font-size: 25px;
+    background-color: $green;
+    padding: 0px 15px 5px 15px;
+    border-radius: 0 0 5px 5px;
+    width: fit-content;
+    margin-left: 15px;
+  }
+}
