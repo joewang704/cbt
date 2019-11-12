@@ -3,23 +3,12 @@ import moment from 'moment'
 import { connect } from 'react-redux'
 
 import './ThoughtReframing.scss'
-import { generateUUID, getExercise } from '../../utils/api.js'
-import { removeExerciseEntry, updateExercise } from '../../ducks/exercises'
+import { getExercise } from '../../utils/api.js'
+import { populateFromServer, removeExerciseEntry } from '../../ducks/exercises'
 
 function ThoughtReframing({ thoughts, navigate, populateFromServer, removeExerciseEntry }) {
   useEffect(() => {
-    getExercise('thoughtReframing').then(allThoughts => {
-      // Populates exercise data from server
-      // If data is empty, creates new empty exercise and redirects to form page
-      if (allThoughts && allThoughts.length) {
-        populateFromServer(allThoughts)
-      } else {
-        startNewExercise()
-      }
-    }).catch(err => {
-      // TODO: error modal
-      console.log(err)
-    })
+    populateFromServer()
   }, [])
 
   const startNewExercise = () => {
@@ -59,12 +48,7 @@ export default connect(
     }
   },
   dispatch => ({
-    populateFromServer: allThoughts => dispatch(updateExercise(state => {
-      state.thoughtReframing = allThoughts.reduce((acc, curr) => {
-        acc[curr._id] = curr
-        return acc
-      }, {})
-    })),
+    populateFromServer: () => dispatch(populateFromServer("thoughtReframing")),
     removeExerciseEntry: (exerciseType, id) => dispatch(removeExerciseEntry(exerciseType, id)),
   })
 )(ThoughtReframing)

@@ -1,9 +1,7 @@
-// Talks to server, mocks out server functionality currently
-import uuid from 'uuid/v4'
 import moment from 'moment'
 import axios from 'axios'
 
-const baseUrl = 'http://localhost:4000'
+const baseUrl = process.env.BACKEND_URL || 'http://localhost:4000'
 
 const url = (endpoint) => `${baseUrl}/${endpoint}`
 
@@ -23,6 +21,13 @@ const request = (method, endpoint, payload) => {
           // TODO: show error popup
           throw err
         })
+    case 'PUT':
+      return axios.put(url(endpoint), payload)
+        .then(({ data }) => data)
+        .catch(err => {
+          // TODO: show error popup
+          throw err
+        })
     case 'DELETE':
       return axios.delete(url(endpoint), payload)
         .then(({ data }) => data)
@@ -33,46 +38,20 @@ const request = (method, endpoint, payload) => {
   }
 }
 
-// TODO: replace with actual UUID generation
-export function generateUUID() {
-  return uuid()
-}
-
 export function persistExercise(exerciseId, body) {
-  /*return getExercise(exerciseId).then(exercise => {
-    if (!body.created_at) {
-      body.created_at = moment.utc().format()
-    }
-    body.updated_at = moment.utc().format()
-    if (exercise) {
-      exercise[id] = body
-    } else {
-      exercise = { [id]: body }
-    }
-    try {
-      localStorage.setItem(exerciseId, JSON.stringify(exercise))
-      return body
-    } catch {
-      return null
-    }
-  })*/
   return request('POST', `exercise/${exerciseId}`, body)
 }
 
-export function getExercise(exerciseType) {
-  /*return new Promise((resolve, reject) => {
-    try {
-      const exercise = JSON.parse(localStorage.getItem(exerciseId))
-      setTimeout(() => resolve(exercise), 300)
-    } catch {
-      resolve(null)
-    }
-  })*/
+export function getExerciseEntries(exerciseType) {
   return request('GET', `exercise/${exerciseType}`)
 }
 
 export function addExerciseEntry(exerciseType, entry) {
   return request('POST', `exercise/${exerciseType}`, entry)
+}
+
+export function updateExerciseEntry(exerciseType, id, entry) {
+  return request('PUT', `exercise/${exerciseType}/${id}`, entry)
 }
 
 export function getExerciseById(exerciseId, id) {

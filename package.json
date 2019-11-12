@@ -24,8 +24,7 @@
     "slate": "^0.44.12",
     "slate-plain-serializer": "^0.6.36",
     "slate-react": "^0.21.18",
-    "typescript": "^3.4.1",
-    "uuid": "^3.3.2"
+    "typescript": "^3.4.1"
   },
   "scripts": {
     "start": "react-scripts start",

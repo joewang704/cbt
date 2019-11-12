@@ -1,4 +1,4 @@
-import { merge, copy } from './utils'
+import { copy } from './utils'
 
 const CREATE = 'notes/CREATE'
 const UPDATE = 'notes/UPDATE'

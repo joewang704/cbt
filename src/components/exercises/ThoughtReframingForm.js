@@ -1,8 +1,7 @@
 import React from 'react'
 import './ThoughtReframingForm.scss'
 import { connect } from 'react-redux'
-import { updateExercise } from '../../ducks/exercises'
-import { persistExercise } from '../../utils/api.js'
+import { addExerciseEntry } from '../../ducks/exercises'
 import CognitiveDistortions from '../../utils/distortions.json'
 
 import { Editor } from 'slate-react'
@@ -90,18 +89,15 @@ class ThoughtReframingForm extends React.Component {
   }
 
   onSubmit = () => {
-    const { dispatchExercise } = this.props
-    let { rationalizedThought, distortedThought, selectedDistortions } = this.state
-    rationalizedThought = Plain.serialize(rationalizedThought)
-    distortedThought = Plain.serialize(distortedThought)
-    selectedDistortions = Object.keys(selectedDistortions).filter(k => selectedDistortions[k])
-    persistExercise('thoughtReframing', { rationalizedThought, distortedThought, selectedDistortions }).then(thought => {
-      if (thought) {
-        dispatchExercise(thought)
-        navigate('./')
-      } else {
-        // TODO: show error modal
-      }
+    const { rationalizedThought, distortedThought, selectedDistortions } = this.state
+    const sanitizedExerciseEntry = {
+      rationalizedThought: Plain.serialize(rationalizedThought),
+      distortedThought: Plain.serialize(distortedThought),
+      selectedDistortions: Object.keys(selectedDistortions).filter(k => selectedDistortions[k]),
+    }
+
+    this.props.addExerciseEntry(sanitizedExerciseEntry).then(() => {
+      navigate('./')
     })
   }
 }
@@ -127,10 +123,6 @@ export default connect(
     }
   },
   (dispatch) => ({
-    dispatchExercise: (payload) => {
-      dispatch(updateExercise(state => {
-        state.thoughtReframing[payload._id] = payload
-      }))
-    },
+    addExerciseEntry: (entry) => dispatch(addExerciseEntry("thoughtReframing", entry)),
   })
 )(ThoughtReframingForm)
