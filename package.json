@@ -7,7 +7,7 @@
     "axios": "^0.19.0",
     "classnames": "^2.2.5",
     "emotion": "^9.2.12",
-    "immer": "^3.1.2",
+    "immer": "^9.0.6",
     "immutability-helper": "^3.0.0",
     "immutable": "^3.8.1",
     "is-hotkey": "^0.1.4",
